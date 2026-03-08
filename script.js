@@ -43,6 +43,14 @@ window.onload = function () {
 
 // featch
 async function loadIssues() {
+    const container = document.getElementById("issues-container");
+
+    container.innerHTML = `
+        <div class="flex justify-center items-center py-10">
+            <span class="loading loading-dots loading-xl"></span>
+        </div>
+    `;
+
     try {
         const res = await fetch(API_URL);
         const result = await res.json();
@@ -51,7 +59,7 @@ async function loadIssues() {
         updateCount(issues.length);
     } catch (err) {
         console.error("Error fetching issues:", err);
-        document.getElementById("issues-container").innerHTML = "<p class='text-gray-500'>Unable to load issues.</p>";
+        container.innerHTML = "<p class='text-gray-500'>Unable to load issues.</p>";
     }
 }
 
