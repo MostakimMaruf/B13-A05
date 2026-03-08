@@ -77,31 +77,30 @@ function displayIssues(data) {
                 ${statusCircle}
                 <span class="px-3 py-1 text-xs rounded-full ${priorityColor}">${issue.priority}</span>
             </div>
-            <h3 onclick="getIssue('${issue.id}')"class="font-semibold text-lg cursor-pointer text-blue-600">
-            ${issue.title}
-            </h3>          
+            <h3 onclick="getIssue('${issue.id}')"class="font-semibold text-lg cursor-pointer text-[#1F2937]">${issue.title}</h3>          
             <p class="text-sm text-gray-500 mb-1">${issue.description.slice(0, 80)}...</p>
-            <div class="flex flex-col items-start justify-start gap-1 mt-2 mb-2">
-  ${
-    issue.labels
-      .map(label => {
-        // Label er color ebong icon mapping
-        const labelMap = {
-          "bug": { color: "bg-red-100 text-red-600", icon: "🐞" },
-          "enhancement": { color: "bg-green-100 text-green-600", icon: "✨" },
-          "help wanted": { color: "bg-blue-100 text-blue-600", icon: "❓" },
-          "question": { color: "bg-purple-100 text-purple-600", icon: "❔" }
-        };
 
-        const { color, icon } = labelMap[label.trim()] || { color: "bg-gray-100 text-gray-600", icon: "🔖" };
 
-        return `<span class="px-2 py-1 rounded text-xs ${color}">${icon} ${label}</span>`;
-      })
-      .join('')
-  }
-</div>
-            <hr class="mb-4 text-[#E5E7EB]">
-            <div class="flex flex-col justify-between text-sm text-gray-500">
+            <div class="flex flex-col items-start justify-start gap-1 mt-2 mb-2">${issue.labels.map(label => {
+
+            // label color and icon map
+
+            const labelMap = {
+                "bug": { color: "bg-red-100 text-red-500", icon: `<i class="fa-solid fa-bug"></i>` },
+                "enhancement": { color: "bg-[#FDE68A] text-[#D97706]", icon: `<i class="fa-solid fa-crosshairs"></i>` },
+                "help wanted": { color: "bg-[#FDE68A]  text-[#D97706]", icon:  `<i class="fa-solid fa-crosshairs"></i>` },
+                "question": { color: "bg-[#FDE68A]  text-[#D97706]", icon: `<i class="fa-solid fa-crosshairs"></i>` }
+            };
+
+            const { color, icon } = labelMap[label.trim()] || { color: "bg-[#FDE68A]  text-[#D97706]", icon:  `<i class="fa-solid fa-crosshairs"></i>` };
+
+            return `<span class="px-2 py-1 rounded text-xs ${color}">${icon} ${label}</span>`;
+         })
+                .join('')
+            }
+           </div>
+             <hr class="mb-4 text-[#E5E7EB]">
+             <div class="flex flex-col justify-between text-sm text-gray-500">
                 <span>${issue.author}</span>
                 <span>${new Date(issue.createdAt).toLocaleDateString()}</span>
             </div>
@@ -113,48 +112,50 @@ function displayIssues(data) {
 }
 
 
-async function getIssue(id){
+async function getIssue(id) {
 
-const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
 
-const result = await res.json();
+    const result = await res.json();
 
-const issue = result.data;
-
-
-// text data
-
-document.getElementById("modalTitle").innerText = issue.title;
-
-document.getElementById("modalDescription").innerText = issue.description;
-
-document.getElementById("modalStatus").innerText = issue.status;
-
-document.getElementById("modalPriority").innerText = issue.priority;
-
-document.getElementById("modalAuthor").innerText = issue.author;
-
-document.getElementById("modalDate").innerText =
-new Date(issue.createdAt).toLocaleDateString();
+    const issue = result.data;
 
 
-// labels show
+    // text data
 
-const labelsContainer = document.getElementById("modalLabels");
+    document.getElementById("modalTitle").innerText = issue.title;
 
-labelsContainer.innerHTML = "";
+    document.getElementById("modalDescription").innerText = issue.description;
 
-issue.labels.forEach(label => {
+    document.getElementById("modalAssignee").innerText = issue.assignee || "Unassigned";
 
-labelsContainer.innerHTML +=
-`<span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs">${label}</span>`;
+    document.getElementById("modalStatus").innerText = issue.status;
 
-});
+    document.getElementById("modalPriority").innerText = issue.priority;
+
+    document.getElementById("modalAuthor").innerText = issue.author;
+
+    document.getElementById("modalDate").innerText =
+        new Date(issue.createdAt).toLocaleDateString();
 
 
-// modal open
+    // labels show
 
-document.getElementById("issueModal").showModal();
+    const labelsContainer = document.getElementById("modalLabels");
+
+    labelsContainer.innerHTML = "";
+
+    issue.labels.forEach(label => {
+
+        labelsContainer.innerHTML +=
+            `<span class="bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs">${label}</span>`;
+
+    });
+
+
+    // modal open
+
+    document.getElementById("issueModal").showModal();
 
 }
 // filter issues
