@@ -28,9 +28,9 @@ async function loadIssues() {
     const res = await fetch(API_URL);
     const result = await res.json();
 
-    issues = result.data;   // 🔴 IMPORTANT
+    issues = result.data;  
 
-    console.log(issues);    // console এ check করো
+    console.log(issues);   
 
     displayIssues(issues);
 }
@@ -58,6 +58,7 @@ function displayIssues(data) {
 
         // Card HTML
         const card = `
+        <div class="shasow-sm p-2 space-x-1">
         <div class="bg-white rounded-lg shadow-sm p-5 border-t-4 ${borderColor} hover:shadow-md transition">
 
             <div class="flex justify-between items-center mb-3">
@@ -82,15 +83,20 @@ function displayIssues(data) {
                 </span>
             </div>
 
-            <hr class="mb-4">
+            <hr class="mb-4 text-[#E5E7EB]">
 
-            <div class="flex justify-between text-sm text-gray-500">
+            <div class="flex flex-col justify-between text-sm text-gray-500">
                 <span>${issue.author}</span>
                 <span>${issue.createdAt}</span>
             </div>
 
         </div>
+        
+        
+        </div>
         `;
+
+        
 
         container.innerHTML += card;
     });
