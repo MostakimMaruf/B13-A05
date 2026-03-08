@@ -25,7 +25,63 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body class="">
+
+    <nav class="navbar bg-base-100 shadow-sm px-6 py-3 mb-6">
+        <div class="flex justify-between w-full items-center">
+            <div class="flex items-center gap-2">
+                <img src="assets/github-logo.png" class="h-9 w-9" alt="">
+                <span class="text-xl font-semibold text-[#1F2937]">GitHub Issues Tracker</span>
+            </div>
+            <div class="flex gap-4 items-center">
+                <input type="text" id="searchInput" placeholder="Search" class="input input-bordered w-32 md:w-auto">
+                <button id="newIssueBtn" class="btn bg-[#4A00FF] text-white"><i class="fa-solid fa-plus"></i> New
+                    Issue</button>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- <section class="w-[80%] mx-auto  bg-white">
+        <div class="tabs border ">
+            <input type="radio" name="my_tabs_6" class="tab " aria-label="All" checked="checked" />
+
+            <input type="radio" name="my_tabs_6" class="tab" aria-label="Open" />
+
+            <input type="radio" name="my_tabs_6" class="tab" aria-label="Closed" />
+        </div>
+    </section> -->
+
+    <section class="w-[80%] mx-auto shadow-sm bg-white px-5 py-[4px] rounded space-x-2">
+        <button onclick="filterIssues('all')" id="all-filter-btn"
+            class="bg-[#4A00FF] text-white px-4 py-1 rounded sm:px-8 sm:py-2">All</button>
+
+        <button onclick="filterIssues('open')" id="open-filter-btn"
+            class="text-[#323B49] bg-gray-100 px-3 py-1 rounded sm:px-8 sm:py-2">Open</button>
+
+        <button onclick="filterIssues('closed')" id="closed-filter-btn"
+            class="text-[#323B49] bg-gray-100 px-3 py-1 rounded sm:px-8 sm:py-2">Closed</button>
+    </section>
+
+    <section class=" flex justify-between items-center w-[80%] mx-auto bg-white px-5 py-5 rounded mt-5 shadow-sm">
+        <div class=" flex items-center gap-2 ">
+            <div>
+                <img src="assets/Aperture.png" alt="">
+            </div>
+            <div>
+                <h2 id="issue-count" class="font-semibold text-xl text-[#1F2937]">50 Issues</h2>
+                <p class="text-[#6B7280]">Track and manage your project issues</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 ">
+            <p class="font-medium text-[#1F2937]"><i class="fa-solid fa-circle text-green-400"></i> Open</p>
+            <p class="font-medium text-[#1F2937]"><i class="fa-solid fa-circle text-[#4A00FF]"></i> Closed</p>
+        </div>
+    </section>
+
+
+    <section id="issues-container" class="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+    </section>
 
 
     <script src="script.js"></script>
