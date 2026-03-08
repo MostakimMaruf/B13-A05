@@ -28,19 +28,37 @@
 <body class="">
     <!-- navbar -->
     <nav class="navbar bg-base-100 shadow-sm px-6 py-3 mb-6">
-        <div class="flex justify-between w-full items-center">
+        <div class="flex justify-between w-full items-center">  
             <div class="flex items-center gap-2">
                 <img src="assets/github-logo.png" class="h-9 w-9" alt="">
                 <span class="text-xl font-semibold text-[#1F2937]">GitHub Issues Tracker</span>
             </div>
-            <div class="flex gap-4 items-center">
-                <input type="text" id="searchInput" placeholder="Search" class="input input-bordered w-32 md:w-auto">
-                <button id="newIssueBtn" class="btn bg-[#4A00FF] text-white"><i class="fa-solid fa-plus"></i> New
-                    Issue</button>
-            </div>
-        </div>
-    </nav>
 
+            <div class="hidden md:flex gap-4 items-center">
+                <input type="text" id="searchInput" placeholder="Search" class="input input-bordered w-32 md:w-auto">
+
+                <button id="newIssueBtn" class="btn bg-[#4A00FF] text-white">
+                    <i class="fa-solid fa-plus"></i> New Issue
+                </button>
+            </div>
+
+            <!-- Mobile 3 dot -->
+            <button id="menuBtn" class="md:hidden text-xl">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+
+        <!-- Mobile dropdown -->
+        <div id="mobileMenu" class=" hidden md:hidden mt-4 flex flex-col gap-3">
+            <input type="text" placeholder="Search" class="input input-bordered w-full">
+
+            <button class="btn bg-[#4A00FF] text-white w-full">
+                <i class="fa-solid fa-plus"></i> New Issue
+            </button>
+        </div>
+
+    </nav>
     <!-- filter buttons -->
     <section class="w-[80%] mx-auto shadow-sm bg-white px-5 py-[4px] rounded space-x-2">
         <button onclick="filterIssues('all')" id="all-filter-btn"
@@ -75,48 +93,47 @@
 
     <!-- modal-->
 
-   <dialog id="issueModal" class="modal">
-  <div class="modal-box max-w-2xl">
+    <dialog id="issue" class="modal">
+        <div class="modal-box max-w-2xl">
 
-    <h3 id="modalTitle" class="text-2xl font-bold mb-3"></h3>
+            <h3 id="title" class="text-2xl font-bold mb-3"></h3>
 
-    <div class="flex items-center gap-3 mb-4">
-      <span id="modalStatus"
-        class="px-3 py-1 rounded-full bg-green-400 text-xs text-white font-medium">
-      </span>
+            <div class="flex items-center gap-3 mb-4">
+                <span id="status" class="px-3 py-1 rounded-full bg-green-400 text-xs text-white font-medium">
+                </span>
 
-      <span class="text-gray-500 text-sm">
-        Opened by <span id="modalAuthor"></span>
-        <span id="modalDate"></span>
-      </span>
-    </div>
+                <span class="text-gray-500 text-sm">
+                    Opened by <span id="author"></span>
+                    <span id="modalDate"></span>
+                </span>
+            </div>
 
-    <div id="modalLabels" class="flex gap-2 flex-wrap mb-4"></div>
+            <div id="labels" class="flex gap-2 flex-wrap mb-4"></div>
 
-    <p id="modalDescription" class="text-gray-600 mb-6"></p>
+            <p id="description" class="text-gray-600 mb-6"></p>
 
-    <div class="bg-gray-100 rounded-lg p-4 flex justify-between mb-6">
+            <div class="bg-gray-100 rounded-lg p-4 flex justify-between mb-6">
 
-      <div>
-        <p class="text-gray-500 text-sm">Assignee:</p>
-        <p id="modalAssignee" class="font-medium"></p>
-      </div>
+                <div>
+                    <p class="text-gray-500 text-sm">Assignee:</p>
+                    <p id="assignee" class="font-medium"></p>
+                </div>
 
-      <div>
-        <p class="text-gray-500 text-sm">Priority:</p>
-        <p id="modalPriority" class="text-yellow-500 font-medium"></p>
-      </div>
+                <div>
+                    <p class="text-gray-500 text-sm">Priority:</p>
+                    <p id="priority" class="text-yellow-500 font-medium"></p>
+                </div>
 
-    </div>
+            </div>
 
-    <div class="modal-action">
-      <form method="dialog">
-        <button class="btn">Close</button>
-      </form>
-    </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <button class="btn">Close</button>
+                </form>
+            </div>
 
-  </div>
-</dialog>
+        </div>
+    </dialog>
 
     <!-- js file -->
 

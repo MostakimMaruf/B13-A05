@@ -11,6 +11,14 @@ function login() {
 }
 
 
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+
+menuBtn.addEventListener("click", function () {
+    mobileMenu.classList.toggle("hidden");
+});
+
+
 // api and global variables
 const API_URL = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 let issues = [];
@@ -123,17 +131,17 @@ async function getIssue(id) {
 
     // text data
 
-    document.getElementById("modalTitle").innerText = issue.title;
+    document.getElementById("title").innerText = issue.title;
 
-    document.getElementById("modalDescription").innerText = issue.description;
+    document.getElementById("description").innerText = issue.description;
 
-    document.getElementById("modalAssignee").innerText = issue.assignee || "Unassigned";
+    document.getElementById("assignee").innerText = issue.assignee;
 
-    document.getElementById("modalStatus").innerText = issue.status;
+    document.getElementById("status").innerText = issue.status;
 
-    document.getElementById("modalPriority").innerText = issue.priority;
+    document.getElementById("priority").innerText = issue.priority;
 
-    document.getElementById("modalAuthor").innerText = issue.author;
+    document.getElementById("author").innerText = issue.author;
 
     document.getElementById("modalDate").innerText =
         new Date(issue.createdAt).toLocaleDateString();
@@ -141,7 +149,7 @@ async function getIssue(id) {
 
     // labels show
 
-    const labelsContainer = document.getElementById("modalLabels");
+    const labelsContainer = document.getElementById("labels");
 
     labelsContainer.innerHTML = "";
 
@@ -155,7 +163,7 @@ async function getIssue(id) {
 
     // modal open
 
-    document.getElementById("issueModal").showModal();
+    document.getElementById("issue").showModal();
 
 }
 // filter issues
