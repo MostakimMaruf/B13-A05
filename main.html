@@ -26,7 +26,7 @@
 </head>
 
 <body class="">
-
+    <!-- navbar -->
     <nav class="navbar bg-base-100 shadow-sm px-6 py-3 mb-6">
         <div class="flex justify-between w-full items-center">
             <div class="flex items-center gap-2">
@@ -41,7 +41,7 @@
         </div>
     </nav>
 
-
+    <!-- filter buttons -->
     <section class="w-[80%] mx-auto shadow-sm bg-white px-5 py-[4px] rounded space-x-2">
         <button onclick="filterIssues('all')" id="all-filter-btn"
             class="bg-[#4A00FF] text-white px-4 py-1 rounded sm:px-8 sm:py-2">All</button>
@@ -69,10 +69,56 @@
         </div>
     </section>
 
-
-    <section id="issues-container" class="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+    <!-- issue card  -->
+    <section id="issues-container" class="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 mt-6">
     </section>
 
+    <!-- modal-->
+
+   <dialog id="issueModal" class="modal">
+  <div class="modal-box max-w-2xl">
+
+    <h3 id="modalTitle" class="text-2xl font-bold mb-3"></h3>
+
+    <div class="flex items-center gap-3 mb-4">
+      <span id="modalStatus"
+        class="px-3 py-1 text-sm rounded-full bg-green-100 text-green-600">
+      </span>
+
+      <span class="text-gray-500 text-sm">
+        Opened by <span id="modalAuthor"></span>
+        <span id="modalDate"></span>
+      </span>
+    </div>
+
+    <div id="modalLabels" class="flex gap-2 flex-wrap mb-4"></div>
+
+    <p id="modalDescription" class="text-gray-600 mb-6"></p>
+
+    <div class="bg-gray-100 rounded-lg p-4 flex justify-between mb-6">
+
+      <div>
+        <p class="text-gray-500 text-sm">Assignee:</p>
+        <p id="modalAssignee" class="font-medium"></p>
+      </div>
+
+      <div>
+        <p class="text-gray-500 text-sm">Priority:</p>
+        <p id="modalPriority" class="text-yellow-500 font-medium"></p>
+      </div>
+
+    </div>
+
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn">Close</button>
+      </form>
+    </div>
+
+  </div>
+</dialog>
+
+    <!-- js file -->
 
     <script src="script.js"></script>
 </body>
