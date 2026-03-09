@@ -10,7 +10,7 @@ function login() {
     }
 }
 
-
+// mobile menu toggle
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
 
@@ -151,8 +151,7 @@ async function getIssue(id) {
 
     document.getElementById("author").innerText = issue.author;
 
-    document.getElementById("modalDate").innerText =
-        new Date(issue.createdAt).toLocaleDateString();
+    document.getElementById("modalDate").innerText =new Date(issue.createdAt).toLocaleDateString();
 
 
     // labels show
@@ -207,5 +206,5 @@ function updateCount(count) {
 }
 
 
-// open modal
+
 
